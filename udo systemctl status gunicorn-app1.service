@@ -1,0 +1,23 @@
+[0;1;32m●[0m nginx.service - nginx - high performance web server
+   Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; vendor preset: disabled)
+   Active: [0;1;32mactive (running)[0m since Tue 2026-01-13 10:14:59 UTC; 8h ago
+     Docs: http://nginx.org/en/docs/
+  Process: 143994 ExecReload=/bin/kill -s HUP $MAINPID (code=exited, status=0/SUCCESS)
+  Process: 1871 ExecStart=/usr/sbin/nginx -c /etc/nginx/nginx.conf (code=exited, status=0/SUCCESS)
+ Main PID: 2168 (nginx)
+    Tasks: 2 (limit: 37773)
+   Memory: 12.0M
+   CGroup: /system.slice/nginx.service
+           ├─  2168 nginx: master process /usr/sbin/nginx -c /etc/nginx/nginx.conf
+           └─143996 nginx: worker process
+
+Jan 13 10:14:59 server1.sureshwizard.com nginx[1871]: nginx: [warn] conflicting server name "www.sureshwizard.com" on 0.0.0.0:443, ignored
+Jan 13 10:14:59 server1.sureshwizard.com nginx[1871]: nginx: [warn] conflicting server name "sureshwizard.com" on 0.0.0.0:80, ignored
+Jan 13 10:14:59 server1.sureshwizard.com nginx[1871]: nginx: [warn] conflicting server name "www.sureshwizard.com" on 0.0.0.0:80, ignored
+Jan 13 10:14:59 server1.sureshwizard.com nginx[1871]: nginx: [warn] conflicting server name "162.0.225.90" on 0.0.0.0:80, ignored
+Jan 13 10:14:59 server1.sureshwizard.com nginx[1871]: nginx: [warn] conflicting server name "162.0.225.90" on [::]:80, ignored
+Jan 13 10:14:59 server1.sureshwizard.com systemd[1]: Started nginx - high performance web server.
+Jan 13 18:37:50 server1.sureshwizard.com systemd[1]: Reloading nginx - high performance web server.
+Jan 13 18:37:50 server1.sureshwizard.com systemd[1]: Reloaded nginx - high performance web server.
+Jan 13 18:38:59 server1.sureshwizard.com systemd[1]: Reloading nginx - high performance web server.
+Jan 13 18:38:59 server1.sureshwizard.com systemd[1]: Reloaded nginx - high performance web server.

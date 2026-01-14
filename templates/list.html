@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>{{ table.replace("_"," ").title() }}</h2>
+
+<a class="btn" href="/add/{{table}}">+ Add Record</a>
+
+<table>
+<tr>
+{% for h in headers %}
+<th>{{h}}</th>
+{% endfor %}
+<th>Action</th>
+</tr>
+
+{% for r in rows %}
+<tr>
+{% for c in r %}
+<td>{{c}}</td>
+{% endfor %}
+<td>
+<a class="btn del" href="/delete/{{table}}/{{loop.index}}">Delete</a>
+</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}
+

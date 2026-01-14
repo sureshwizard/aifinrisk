@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:20px;}
+.kpi{background:#1f3c88;color:white;padding:15px;border-radius:8px;}
+.kpi span{font-size:28px;font-weight:bold;}
+.grid{display:grid;grid-template-columns:2fr 3fr 2fr;gap:15px;margin-bottom:20px;}
+.card{background:white;border-radius:8px;padding:15px;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+.card h4{margin:0 0 10px 0;}
+.full{grid-column:1 / -1;}
+.chart{height:220px;background:#eef2f7;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#777;}
+.link{float:right;font-size:12px;}
+.ask{background:#17202a;color:white;padding:15px;border-radius:8px;margin-bottom:20px;}
+.ask input{width:80%;padding:8px;border-radius:5px;border:none;}
+.ask button{padding:8px 12px;background:#1f3c88;color:white;border:none;border-radius:5px;}
+.ask pre{background:#111;padding:10px;border-radius:5px;margin-top:10px;max-height:200px;overflow:auto;}
+</style>
+
+<!-- AI BOX -->
+<div class="ask">
+  <b>Student Risk AI</b><br><br>
+  <input id="aiQuestion" placeholder="Ask about student risk... e.g. Who are the top 10 high risk students?" />
+  <button onclick="askAI()">Ask</button>
+  <pre id="aiAnswer">AI is ready…</pre>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi">Total Students<br><span>1,250</span></div>
+  <div class="kpi">High Risk Students<br><span style="color:#ff6b6b;">178</span></div>
+  <div class="kpi">Avg Dropout Probability<br><span>58%</span></div>
+  <div class="kpi">Avg Attendance Rate<br><span>72%</span></div>
+</div>
+
+<div class="grid">
+  <div class="card"><h4>Risk Distribution</h4><div class="chart">Bar Chart</div></div>
+  <div class="card"><h4>Dropout Probability Heatmap</h4><div class="chart">Heatmap</div></div>
+  <div class="card"><h4>Attendance vs Dropout</h4><div class="chart">Scatter Plot</div></div>
+  <div class="card"><h4>Dropout Risk Trend</h4><div class="chart">Line Chart</div></div>
+  <div class="card"><h4>Stress vs Exam Score</h4><div class="chart">Scatter Plot</div></div>
+  <div class="card"><h4>Family Income vs Risk</h4><div class="chart">Bubble Chart</div></div>
+  <div class="card full"><h4>Intervention Priority</h4><div class="chart">Priority Bar Chart</div></div>
+</div>
+
+<!-- AI SCRIPT -->
+<script>
+function askAI(){
+  const q = document.getElementById("aiQuestion").value;
+  document.getElementById("aiAnswer").innerText = "Thinking...";
+
+  fetch("/ask", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ question: q })
+  })
+  .then(r => r.json())
+  .then(d => {
+    document.getElementById("aiAnswer").innerText = d.answer || "No answer";
+  })
+  .catch(err => {
+    document.getElementById("aiAnswer").innerText = "Backend not reachable";
+  });
+}
+</script>
+
+{% endblock %}
+

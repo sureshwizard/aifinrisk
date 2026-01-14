@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Add Record to {{table.replace("_"," ").title()}}</h2>
+
+<form method="post">
+{% for h in headers %}
+{% if h!="LastUpdated" and h!="LastCalculated" %}
+<label>{{h}}</label>
+<input name="{{h}}">
+{% endif %}
+{% endfor %}
+
+<button class="btn">Save</button>
+</form>
+
+{% endblock %}
+
